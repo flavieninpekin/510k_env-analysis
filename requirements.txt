@@ -1,0 +1,8 @@
+gymnasium>=0.29
+numpy>=1.24
+pettingzoo>=1.24
+stable_baselines3>=2.3
+sb3_contrib>=2.3
+torch>=2.0
+matplotlib>=3.7
+pytest>=8
