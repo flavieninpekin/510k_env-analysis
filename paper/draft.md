@@ -347,6 +347,34 @@ short horizons. This benchmark paper supplies the environment characterization
 behind that phenomenon: the four modes, the info-reveal dial, and the baseline
 suite make the phenomenon reproducible and the mechanism studyable.
 
+### 6.6 Theoretical grounding
+
+Four analytical results (proofs and verification in `notes/theory.md`) tie the
+environment's *design* and the *observed* results together:
+
+1. **Team-size prior (design).** The red team has size 2 with probability
+   `1 − 4·C(50,11)/C(52,13) ≈ 0.765` and size 1 with the remainder — a derived
+   hypergeometric fact (verified exactly over 20k deals), not an empirical
+   artifact. The "embrace 1v3" design choice therefore rests on a closed-form
+   prior, and the latent relationship includes both identity and size.
+
+2. **Membership probabilities.** `P(agent ∈ red) ≈ 0.441`, and
+   `P(agent is the solo red player) ≈ 0.059`.
+
+3. **The reveal dial is a nearly-linear information channel.** `RevealEnv`
+   implements `R = T·Z`, `Z~Bernoulli(p)`, whose mutual information is
+   `MI(p) = p·H(T) − δ(p)`, with `δ(p) = 0` iff no deal is 1v3. Measured:
+   `MI(0.25)=0.62, MI(0.5)=1.26, MI(0.75)=1.91` (≥91% of the ideal `p·H(T)`).
+   Hence the §6.2 flat curve is an information axis that *was* swept: the agent
+   genuinely fails to exploit the (large) provided information. The small
+   deficit δ(p) is itself a signature of the hidden solo-red state.
+
+4. **Reward dilution explains coarse win rates.** In team modes the Scorer
+   aggregates two players' scores; under fixed policies the teammate's play
+   contributes ~half the reward variance (measured own/std share ≈ 0.51).
+   This is why SINGLE is the cleanest probe (§6.1 orders methods there) and why
+   win rate vs rule bots is a threshold on a heavily diluted signal (§6.2).
+
 ---
 
 ## 7 Discussion, Limitations, and Future Work

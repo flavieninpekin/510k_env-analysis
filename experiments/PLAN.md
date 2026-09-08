@@ -11,6 +11,18 @@
 - ✅ PettingZoo `api_test` (AEC)
 - ✅ Masking compliance: illegal-action rate = 0.0 for all trained policies
 
+## 0.5 Theory (done — `notes/theory.md`)
+
+- ✅ **A** team-size prior: `P(size 2) = 1 − 4·C(50,11)/C(52,13) ≈ 0.765` (verified exactly)
+- ✅ **B** membership probs: `P(agent∈red)≈0.441`, `P(solo red)≈0.059`
+- ✅ **C** reveal dial: `MI(p) = p·H(T) − δ(p)`; nearly-linear info axis (≥91%),
+      deficit δ = signature of the hidden 1v3 state
+- ✅ **D** reward dilution: ~half the team-score variance comes from the
+      uncontrolled teammate → explains SINGLE's clean signal and coarse
+      team-mode win rates
+- 🔜 Open: relate δ(p) to a learnability bound; tighten D into a reward-SNR
+      theorem; link to IIGC κ.
+
 ## 1. Core capability profile (primary §6.1)
 
 Full matrix: 4 modes × 3 policies × 5 seeds × 1M steps.
