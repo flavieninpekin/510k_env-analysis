@@ -1,0 +1,7 @@
+# Language statistics: this is a Python analysis repo. The paper and research
+# notes are write-ups, not the primary code, so exclude them from the language
+# bar. Third-party TeX macro packages are vendored.
+paper/** linguist-documentation
+notes/** linguist-documentation
+*.sty linguist-vendored
+*.bst linguist-vendored
