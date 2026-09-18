@@ -1,7 +1,13 @@
-# Language statistics: this is a Python analysis repo. The paper and research
-# notes are write-ups, not the primary code, so exclude them from the language
-# bar. Third-party TeX macro packages are vendored.
-paper/** linguist-documentation
-notes/** linguist-documentation
+# Language statistics for GitHub Linguist.
+# This repo is a Python analysis kit; the following are excluded so the language
+# bar reflects the actual source:
+#   - third-party TeX macro packages / bibliography style (vendored copies)
+#   - research notes and redundant write-ups
+#   - generated experiment results under runs/
+# The submission source (paper/main.tex) is intentionally NOT excluded.
 *.sty linguist-vendored
 *.bst linguist-vendored
+notes/** linguist-documentation
+paper/draft.md linguist-documentation
+paper/preliminary_results.md linguist-documentation
+runs/** linguist-generated
