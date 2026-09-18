@@ -1,37 +1,35 @@
-# 510K: A Card-Game Testbed for Dynamic Cooperation, Partial Observability, and Information Revelation in Multi-Agent RL
+# 510K: A Benchmark for Latent Relationship Inference and When-to-Cooperate in Multi-Agent RL
 
-**Draft v0.4** — ICLR 2027 benchmark-style submission. The masked-PPO 1M ×
-5-seed matrix, the full information-reveal curve, and IPPO are complete;
-statistical tests are integrated; a LaTeX manuscript (`paper/main.tex`,
-`paper/main.pdf`) is available. A masked-LSTM collapse is flagged in §7.
+**Draft v0.5** — ICLR 2027 benchmark-style submission. Repositioned around
+latent relationship inference / when-to-cooperate; masked-PPO 1M × 5-seed
+matrix, full reveal curve, and IPPO complete; statistical tests integrated; a
+LaTeX manuscript (`paper/main.tex`, `paper/main.pdf`) is available.
 
 ---
 
 ## Abstract
 
-Existing multi-agent game benchmarks typically isolate individual challenges:
-immediate scoring, terminal competitive objectives, fixed cooperation, or
-partial observability. We present **510K**, a four-player shedding card game
-that *couples* these challenges in a single decision process: the axes are not
-merely stacked but alter one another's value, and the cooperative relationship
-itself is a hidden latent variable — team membership — and even team size (2v2
-vs 1v3) — is determined at deal time by a private red-A distribution and must be
-inferred from observed play. 510K ships with four controllable modes (SINGLE,
-STATIC, DYNAMIC, OBVIOUS) that ablate the cooperation/information axes, a
-Gymnasium single-agent and PettingZoo AEC interface with built-in action
-masking, and a prior scientific result (Information-Induced Gradient
-Contraction, IIGC) already discovered on it. We characterize the coupling with
-three measurements: (i) structural probes show the immediate-score and
-terminal-finish objectives are in genuine tension, and that the hidden team
-leaves a large non-attributable share of reward variance; (ii) a 1M-step,
-5-seed masked-PPO suite shows SINGLE is hardest for every method (win rate ≈
-chance), while team-mode win rates remain inflated by teammate and
-team-selection effects; (iii) a behavioural probe finds policies learn to
-cooperate with a *fixed, known* partner (deferral asymmetry +0.38) but fail to
-infer a *hidden* partner (+0.00, null) and do not exploit one that is
-*explicitly revealed* (−0.04, with no performance gain) — a direct echo of
-IIGC's *deceptive stability*. 510K is positioned as a testbed in which
-individually-studied challenges are jointly controlled and ablatable.
+Multi-agent benchmarks typically hand the agent its social structure: teams are
+fixed and known, and only the question of *how* to cooperate remains. Realistic
+settings instead require deciding *whether and with whom* to cooperate, by
+inferring relationships from observed behaviour. We present **510K**, a
+four-player shedding card game built to make this latent-relationship inference
+problem measurable while remaining coupled to immediate scoring, terminal
+competition, and partial observability. Team identity and team size (2v2 vs
+1v3) are determined at deal time by a private red-A distribution and hidden from
+observations. 510K offers four independently ablatable modes (SINGLE, STATIC,
+DYNAMIC, OBVIOUS), a graded information-reveal dial, Gymnasium and PettingZoo
+interfaces with action masking, and reference baselines. We formalize the
+resulting challenge as a *belief-inference gap* and measure it behaviourally:
+policies learn to defer to a fixed, known partner (deferral asymmetry +0.38,
+p<1e-4), but do not condition on a hidden partner (+0.00, p=0.21) and do not
+exploit one that is explicitly revealed (−0.04, p<1e-4), even though the reveal
+dial is a near-lossless information channel (≥91% of ideal mutual information).
+Structural probes show that the axes are not separable: scoring and finishing
+trade off, and the hidden team leaves most reward variance unattributable. A
+1M-step, 5-seed masked-PPO suite and a recurrent variant corroborate the
+failure. 510K is offered as a benchmark for *when-to-cooperate* decisions under
+coupled objectives.
 
 ---
 
