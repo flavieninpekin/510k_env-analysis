@@ -3,10 +3,11 @@
   "mode": "dynamic",
   "opponent": "rule",
   "policy": "mlp",
-  "num_timesteps": 200704,
-  "win_rate": 0.85,
-  "mean_reward": 74.15,
-  "std_reward": 69.18473458791324,
-  "mean_len": 19.44,
+  "reveal": 0.5,
+  "num_timesteps": 1001472,
+  "win_rate": 0.82,
+  "mean_reward": 75.2,
+  "std_reward": 70.75280913151082,
+  "mean_len": 19.59,
   "illegal_action_rate": 0.0
 }

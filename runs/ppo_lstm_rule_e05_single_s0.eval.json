@@ -1,0 +1,13 @@
+{
+  "seed": 0,
+  "mode": "single",
+  "opponent": "rule",
+  "policy": "lstm",
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.57,
+  "mean_reward": 18.7,
+  "std_reward": 30.867620575612886,
+  "mean_len": 14.89,
+  "illegal_action_rate": 0.0
+}

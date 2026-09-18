@@ -1,0 +1,13 @@
+{
+  "win_rate": 0.96,
+  "mean_reward": 106.3,
+  "std_reward": 59.65576250455609,
+  "mean_len": 18.62,
+  "illegal_action_rate": 0.0,
+  "seed": 1,
+  "mode": "obvious",
+  "policy": "mlp",
+  "opponent": "random",
+  "train_opponent": "rule",
+  "checkpoint": "ppo_mlp_rule_obvious_s1.zip"
+}

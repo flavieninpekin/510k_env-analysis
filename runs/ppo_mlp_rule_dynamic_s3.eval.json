@@ -1,0 +1,13 @@
+{
+  "seed": 3,
+  "mode": "dynamic",
+  "opponent": "rule",
+  "policy": "mlp",
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.85,
+  "mean_reward": 72.55,
+  "std_reward": 70.98765737788507,
+  "mean_len": 18.86,
+  "illegal_action_rate": 0.0
+}

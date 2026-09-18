@@ -1,0 +1,13 @@
+{
+  "seed": 3,
+  "mode": "obvious",
+  "opponent": "rule",
+  "policy": "mlp",
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.82,
+  "mean_reward": 69.6,
+  "std_reward": 67.64125959797023,
+  "mean_len": 18.32,
+  "illegal_action_rate": 0.0
+}

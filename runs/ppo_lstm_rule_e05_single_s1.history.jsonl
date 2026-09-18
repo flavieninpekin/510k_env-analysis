@@ -1,0 +1,10 @@
+{"num_timesteps": 100352, "win_rate": 0.46, "mean_reward": 10.75}
+{"num_timesteps": 200704, "win_rate": 0.49, "mean_reward": 17.4}
+{"num_timesteps": 301056, "win_rate": 0.49, "mean_reward": 17.4}
+{"num_timesteps": 401408, "win_rate": 0.49, "mean_reward": 17.4}
+{"num_timesteps": 501760, "win_rate": 0.52, "mean_reward": 18.6}
+{"num_timesteps": 602112, "win_rate": 0.52, "mean_reward": 17.25}
+{"num_timesteps": 702464, "win_rate": 0.54, "mean_reward": 16.2}
+{"num_timesteps": 802816, "win_rate": 0.52, "mean_reward": 15.95}
+{"num_timesteps": 903168, "win_rate": 0.57, "mean_reward": 17.15}
+{"num_timesteps": 1001472, "win_rate": 0.51, "mean_reward": 16.25}

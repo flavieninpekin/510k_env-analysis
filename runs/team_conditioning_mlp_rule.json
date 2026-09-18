@@ -1,0 +1,403 @@
+{
+  "static": [
+    {
+      "n_decisions": 15207,
+      "n_partner_leads": 2515,
+      "n_opponent_leads": 12692,
+      "pass_rate_partner_leads": 0.7733598409542743,
+      "pass_rate_opponent_leads": 0.3823668452568547,
+      "pass_asymmetry": 0.39099299569741963,
+      "by_team_size": {
+        "2": {
+          "n": 15207,
+          "pass_rate": 0.44703097257841784,
+          "pass_rate_partner_leads": 0.7733598409542743,
+          "pass_rate_opponent_leads": 0.3823668452568547,
+          "pass_asymmetry": 0.39099299569741963
+        }
+      }
+    },
+    {
+      "n_decisions": 15226,
+      "n_partner_leads": 2520,
+      "n_opponent_leads": 12706,
+      "pass_rate_partner_leads": 0.7738095238095238,
+      "pass_rate_opponent_leads": 0.3824964583661262,
+      "pass_asymmetry": 0.3913130654433976,
+      "by_team_size": {
+        "2": {
+          "n": 15226,
+          "pass_rate": 0.4472612636280047,
+          "pass_rate_partner_leads": 0.7738095238095238,
+          "pass_rate_opponent_leads": 0.3824964583661262,
+          "pass_asymmetry": 0.3913130654433976
+        }
+      }
+    },
+    {
+      "n_decisions": 15648,
+      "n_partner_leads": 2554,
+      "n_opponent_leads": 13094,
+      "pass_rate_partner_leads": 0.7705559906029757,
+      "pass_rate_opponent_leads": 0.4263784939667023,
+      "pass_asymmetry": 0.34417749663627345,
+      "by_team_size": {
+        "2": {
+          "n": 15648,
+          "pass_rate": 0.48255368098159507,
+          "pass_rate_partner_leads": 0.7705559906029757,
+          "pass_rate_opponent_leads": 0.4263784939667023,
+          "pass_asymmetry": 0.34417749663627345
+        }
+      }
+    },
+    {
+      "n_decisions": 15219,
+      "n_partner_leads": 2514,
+      "n_opponent_leads": 12705,
+      "pass_rate_partner_leads": 0.7732696897374701,
+      "pass_rate_opponent_leads": 0.38315623770169227,
+      "pass_asymmetry": 0.39011345203577785,
+      "by_team_size": {
+        "2": {
+          "n": 15219,
+          "pass_rate": 0.44759839674091595,
+          "pass_rate_partner_leads": 0.7732696897374701,
+          "pass_rate_opponent_leads": 0.38315623770169227,
+          "pass_asymmetry": 0.39011345203577785
+        }
+      }
+    },
+    {
+      "n_decisions": 15314,
+      "n_partner_leads": 2552,
+      "n_opponent_leads": 12762,
+      "pass_rate_partner_leads": 0.7770376175548589,
+      "pass_rate_opponent_leads": 0.3962545055633913,
+      "pass_asymmetry": 0.3807831119914676,
+      "by_team_size": {
+        "2": {
+          "n": 15314,
+          "pass_rate": 0.4597100692177093,
+          "pass_rate_partner_leads": 0.7770376175548589,
+          "pass_rate_opponent_leads": 0.3962545055633913,
+          "pass_asymmetry": 0.3807831119914676
+        }
+      }
+    }
+  ],
+  "dynamic": [
+    {
+      "n_decisions": 16118,
+      "n_partner_leads": 5936,
+      "n_opponent_leads": 10182,
+      "pass_rate_partner_leads": 0.45502021563342315,
+      "pass_rate_opponent_leads": 0.45315262227460223,
+      "pass_asymmetry": 0.0018675933588209181,
+      "by_team_size": {
+        "1": {
+          "n": 850,
+          "pass_rate": 0.3458823529411765,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.3458823529411765,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12393,
+          "pass_rate": 0.45566045348180423,
+          "pass_rate_partner_leads": 0.4583931133428981,
+          "pass_rate_opponent_leads": 0.45426866398733406,
+          "pass_asymmetry": 0.004124449355564053
+        },
+        "3": {
+          "n": 2875,
+          "pass_rate": 0.47791304347826086,
+          "pass_rate_partner_leads": 0.4469783352337514,
+          "pass_rate_opponent_leads": 0.5263157894736842,
+          "pass_asymmetry": -0.07933745423993277
+        }
+      }
+    },
+    {
+      "n_decisions": 16099,
+      "n_partner_leads": 5918,
+      "n_opponent_leads": 10181,
+      "pass_rate_partner_leads": 0.4626563028050017,
+      "pass_rate_opponent_leads": 0.4568313525193989,
+      "pass_asymmetry": 0.005824950285602815,
+      "by_team_size": {
+        "1": {
+          "n": 849,
+          "pass_rate": 0.3474676089517079,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.3474676089517079,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12361,
+          "pass_rate": 0.45764905751961815,
+          "pass_rate_partner_leads": 0.4566001442654484,
+          "pass_rate_opponent_leads": 0.4581809314801268,
+          "pass_asymmetry": -0.0015807872146783586
+        },
+        "3": {
+          "n": 2889,
+          "pass_rate": 0.4974039460020768,
+          "pass_rate_partner_leads": 0.4769755542922115,
+          "pass_rate_opponent_leads": 0.5292035398230088,
+          "pass_asymmetry": -0.05222798553079733
+        }
+      }
+    },
+    {
+      "n_decisions": 15291,
+      "n_partner_leads": 5707,
+      "n_opponent_leads": 9584,
+      "pass_rate_partner_leads": 0.44997371648852286,
+      "pass_rate_opponent_leads": 0.44355175292153587,
+      "pass_asymmetry": 0.006421963566986988,
+      "by_team_size": {
+        "1": {
+          "n": 807,
+          "pass_rate": 0.3903345724907063,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.3903345724907063,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 11700,
+          "pass_rate": 0.444017094017094,
+          "pass_rate_partner_leads": 0.448685540950455,
+          "pass_rate_opponent_leads": 0.44163223140495866,
+          "pass_asymmetry": 0.007053309545496322
+        },
+        "3": {
+          "n": 2784,
+          "pass_rate": 0.4701867816091954,
+          "pass_rate_partner_leads": 0.4528840662478584,
+          "pass_rate_opponent_leads": 0.4995159728944821,
+          "pass_asymmetry": -0.0466319066466237
+        }
+      }
+    },
+    {
+      "n_decisions": 15890,
+      "n_partner_leads": 5853,
+      "n_opponent_leads": 10037,
+      "pass_rate_partner_leads": 0.48932171535964464,
+      "pass_rate_opponent_leads": 0.4847065856331573,
+      "pass_asymmetry": 0.00461512972648731,
+      "by_team_size": {
+        "1": {
+          "n": 855,
+          "pass_rate": 0.38128654970760234,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.38128654970760234,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12198,
+          "pass_rate": 0.48721101819970486,
+          "pass_rate_partner_leads": 0.48621615028055626,
+          "pass_rate_opponent_leads": 0.4877145326583529,
+          "pass_asymmetry": -0.0014983823777966476
+        },
+        "3": {
+          "n": 2837,
+          "pass_rate": 0.5146281283045471,
+          "pass_rate_partner_leads": 0.4965792474344356,
+          "pass_rate_opponent_leads": 0.543859649122807,
+          "pass_asymmetry": -0.04728040168837144
+        }
+      }
+    },
+    {
+      "n_decisions": 16050,
+      "n_partner_leads": 5897,
+      "n_opponent_leads": 10153,
+      "pass_rate_partner_leads": 0.5144988977446159,
+      "pass_rate_opponent_leads": 0.5186644341573919,
+      "pass_asymmetry": -0.004165536412776061,
+      "by_team_size": {
+        "1": {
+          "n": 854,
+          "pass_rate": 0.44730679156908665,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.44730679156908665,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12290,
+          "pass_rate": 0.5134255492270138,
+          "pass_rate_partner_leads": 0.5095990279465371,
+          "pass_rate_opponent_leads": 0.5153516819571865,
+          "pass_asymmetry": -0.005752654010649394
+        },
+        "3": {
+          "n": 2906,
+          "pass_rate": 0.553337921541638,
+          "pass_rate_partner_leads": 0.5258136924803591,
+          "pass_rate_opponent_leads": 0.5969750889679716,
+          "pass_asymmetry": -0.07116139648761244
+        }
+      }
+    }
+  ],
+  "obvious": [
+    {
+      "n_decisions": 16010,
+      "n_partner_leads": 5250,
+      "n_opponent_leads": 10760,
+      "pass_rate_partner_leads": 0.43733333333333335,
+      "pass_rate_opponent_leads": 0.4699814126394052,
+      "pass_asymmetry": -0.03264807930607183,
+      "by_team_size": {
+        "1": {
+          "n": 795,
+          "pass_rate": 0.31572327044025156,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.31572327044025156,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12800,
+          "pass_rate": 0.4678125,
+          "pass_rate_partner_leads": 0.44206451612903225,
+          "pass_rate_opponent_leads": 0.4789915966386555,
+          "pass_asymmetry": -0.036927080509623234
+        },
+        "3": {
+          "n": 2415,
+          "pass_rate": 0.46128364389233956,
+          "pass_rate_partner_leads": 0.424,
+          "pass_rate_opponent_leads": 0.510576923076923,
+          "pass_asymmetry": -0.08657692307692305
+        }
+      }
+    },
+    {
+      "n_decisions": 15937,
+      "n_partner_leads": 5216,
+      "n_opponent_leads": 10721,
+      "pass_rate_partner_leads": 0.42350460122699385,
+      "pass_rate_opponent_leads": 0.4620837608432049,
+      "pass_asymmetry": -0.038579159616211056,
+      "by_team_size": {
+        "1": {
+          "n": 774,
+          "pass_rate": 0.29457364341085274,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.29457364341085274,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12773,
+          "pass_rate": 0.4604243325765286,
+          "pass_rate_partner_leads": 0.4327470253491981,
+          "pass_rate_opponent_leads": 0.47243740877961155,
+          "pass_asymmetry": -0.03969038343041342
+        },
+        "3": {
+          "n": 2390,
+          "pass_rate": 0.4410041841004184,
+          "pass_rate_partner_leads": 0.397037037037037,
+          "pass_rate_opponent_leads": 0.4980769230769231,
+          "pass_asymmetry": -0.10103988603988606
+        }
+      }
+    },
+    {
+      "n_decisions": 15937,
+      "n_partner_leads": 5216,
+      "n_opponent_leads": 10721,
+      "pass_rate_partner_leads": 0.42350460122699385,
+      "pass_rate_opponent_leads": 0.4620837608432049,
+      "pass_asymmetry": -0.038579159616211056,
+      "by_team_size": {
+        "1": {
+          "n": 774,
+          "pass_rate": 0.29457364341085274,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.29457364341085274,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12773,
+          "pass_rate": 0.4604243325765286,
+          "pass_rate_partner_leads": 0.4327470253491981,
+          "pass_rate_opponent_leads": 0.47243740877961155,
+          "pass_asymmetry": -0.03969038343041342
+        },
+        "3": {
+          "n": 2390,
+          "pass_rate": 0.4410041841004184,
+          "pass_rate_partner_leads": 0.397037037037037,
+          "pass_rate_opponent_leads": 0.4980769230769231,
+          "pass_asymmetry": -0.10103988603988606
+        }
+      }
+    },
+    {
+      "n_decisions": 15937,
+      "n_partner_leads": 5216,
+      "n_opponent_leads": 10721,
+      "pass_rate_partner_leads": 0.42350460122699385,
+      "pass_rate_opponent_leads": 0.4620837608432049,
+      "pass_asymmetry": -0.038579159616211056,
+      "by_team_size": {
+        "1": {
+          "n": 774,
+          "pass_rate": 0.29457364341085274,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.29457364341085274,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12773,
+          "pass_rate": 0.4604243325765286,
+          "pass_rate_partner_leads": 0.4327470253491981,
+          "pass_rate_opponent_leads": 0.47243740877961155,
+          "pass_asymmetry": -0.03969038343041342
+        },
+        "3": {
+          "n": 2390,
+          "pass_rate": 0.4410041841004184,
+          "pass_rate_partner_leads": 0.397037037037037,
+          "pass_rate_opponent_leads": 0.4980769230769231,
+          "pass_asymmetry": -0.10103988603988606
+        }
+      }
+    },
+    {
+      "n_decisions": 15937,
+      "n_partner_leads": 5216,
+      "n_opponent_leads": 10721,
+      "pass_rate_partner_leads": 0.42350460122699385,
+      "pass_rate_opponent_leads": 0.4620837608432049,
+      "pass_asymmetry": -0.038579159616211056,
+      "by_team_size": {
+        "1": {
+          "n": 774,
+          "pass_rate": 0.29457364341085274,
+          "pass_rate_partner_leads": null,
+          "pass_rate_opponent_leads": 0.29457364341085274,
+          "pass_asymmetry": null
+        },
+        "2": {
+          "n": 12773,
+          "pass_rate": 0.4604243325765286,
+          "pass_rate_partner_leads": 0.4327470253491981,
+          "pass_rate_opponent_leads": 0.47243740877961155,
+          "pass_asymmetry": -0.03969038343041342
+        },
+        "3": {
+          "n": 2390,
+          "pass_rate": 0.4410041841004184,
+          "pass_rate_partner_leads": 0.397037037037037,
+          "pass_rate_opponent_leads": 0.4980769230769231,
+          "pass_asymmetry": -0.10103988603988606
+        }
+      }
+    }
+  ]
+}

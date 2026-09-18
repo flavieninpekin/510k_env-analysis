@@ -30,6 +30,7 @@ class PPOConfig:
     out_dir: str = "runs"
     eval_episodes: int = 100
     reveal: Optional[float] = None   # info-reveal prob for DYNAMIC (0..1), None=off
+    tag_suffix: str = ""             # appended to the run tag (distinct variants)
 
     def tag(self) -> str:
         if self.policy == "ippo":
@@ -38,6 +39,8 @@ class PPOConfig:
             base = f"ppo_{self.policy}_{self.opponent}"
         if self.reveal is not None:
             base += f"_r{self.reveal:g}"
+        if self.tag_suffix:
+            base += f"_{self.tag_suffix}"
         return base
 
     def to_dict(self) -> dict:

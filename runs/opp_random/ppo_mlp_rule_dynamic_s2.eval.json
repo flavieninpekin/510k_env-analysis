@@ -1,0 +1,13 @@
+{
+  "win_rate": 0.96,
+  "mean_reward": 105.95,
+  "std_reward": 60.49254086248981,
+  "mean_len": 18.86,
+  "illegal_action_rate": 0.0,
+  "seed": 2,
+  "mode": "dynamic",
+  "policy": "mlp",
+  "opponent": "random",
+  "train_opponent": "rule",
+  "checkpoint": "ppo_mlp_rule_dynamic_s2.zip"
+}

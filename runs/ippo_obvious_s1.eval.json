@@ -1,0 +1,13 @@
+{
+  "seed": 1,
+  "mode": "obvious",
+  "opponent": "rule",
+  "policy": "ippo",
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.77,
+  "mean_reward": 59.15,
+  "std_reward": 63.576941574756475,
+  "mean_len": 21.32,
+  "illegal_action_rate": 0.0
+}

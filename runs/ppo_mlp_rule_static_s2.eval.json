@@ -3,10 +3,11 @@
   "mode": "static",
   "opponent": "rule",
   "policy": "mlp",
-  "num_timesteps": 301056,
-  "win_rate": 0.77,
-  "mean_reward": 68.55,
-  "std_reward": 75.53573657547797,
-  "mean_len": 19.34,
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.73,
+  "mean_reward": 71.6,
+  "std_reward": 78.27477243659033,
+  "mean_len": 18.46,
   "illegal_action_rate": 0.0
 }

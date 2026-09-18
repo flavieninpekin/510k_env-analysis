@@ -1,0 +1,13 @@
+{
+  "win_rate": 0.95,
+  "mean_reward": 87.45,
+  "std_reward": 59.483169888633206,
+  "mean_len": 19.88,
+  "illegal_action_rate": 0.0,
+  "seed": 1,
+  "mode": "obvious",
+  "policy": "ippo",
+  "opponent": "random",
+  "train_opponent": "rule",
+  "checkpoint": "ippo_obvious_s1.zip"
+}

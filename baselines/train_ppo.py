@@ -13,6 +13,8 @@ import argparse
 import json
 import os
 import sys
+from dataclasses import replace
+from typing import Optional
 
 import numpy as np
 from sb3_contrib import MaskablePPO, RecurrentPPO
@@ -155,20 +157,25 @@ def make_eval_env(cfg: PPOConfig):
     return maybe_reveal(cfg, ActionMasker(env, mask_fn))
 
 
-def quick_eval(cfg: PPOConfig, n_episodes: int = 100) -> dict:
+def quick_eval(cfg: PPOConfig, n_episodes: int = 100,
+               eval_opponent: Optional[str] = None) -> dict:
     ckpt = checkpoint_path(cfg)
     if not os.path.exists(ckpt):
         return {}
     model = load_model(cfg, ckpt)
-    env = make_eval_env(cfg)  # policy always controls P0
+    env_cfg = replace(cfg, opponent=eval_opponent) if eval_opponent else cfg
+    env = make_eval_env(env_cfg)  # policy always controls P0
 
     rewards, lengths, wins, illegal = [], [], 0, 0
     for ep in range(n_episodes):
         obs, info = env.reset(seed=1000 + ep)
         done, tot, steps = False, 0.0, 0
+        state, ep_start = None, np.array([True])
         while not done:
             if is_lstm(cfg):
-                a, _ = model.predict(obs, deterministic=True)
+                a, state = model.predict(obs, state=state, episode_start=ep_start,
+                                         deterministic=True)
+                ep_start = np.array([False])
             else:
                 a, _ = model.predict(obs, action_masks=info["action_mask"], deterministic=True)
             if info["action_mask"][int(a)] == 0:
@@ -205,6 +212,10 @@ def main():
     ap.add_argument("--out", default="runs")
     ap.add_argument("--reveal", type=float, default=None,
                     help="info-reveal probability for DYNAMIC mode (0..1); None=off")
+    ap.add_argument("--ent-coef", type=float, default=0.01)
+    ap.add_argument("--net-arch", nargs="+", type=int, default=[256, 256])
+    ap.add_argument("--lstm-hidden", type=int, default=256)
+    ap.add_argument("--tag-suffix", default="")
     ap.add_argument("--eval-episodes", type=int, default=100)
     ap.add_argument("--eval-only", action="store_true")
     args = ap.parse_args()
@@ -213,6 +224,8 @@ def main():
         mode=args.mode, seed=args.seed, policy=args.policy, opponent=args.opponent,
         total_timesteps=args.total, chunk_size=args.chunk, n_steps=args.n_steps,
         batch_size=args.batch_size, n_epochs=args.n_epochs, learning_rate=args.lr,
+        ent_coef=args.ent_coef, net_arch=tuple(args.net_arch),
+        lstm_hidden_size=args.lstm_hidden, tag_suffix=args.tag_suffix,
         out_dir=args.out, eval_episodes=args.eval_episodes, reveal=args.reveal,
     )
 

@@ -1,0 +1,13 @@
+{
+  "win_rate": 0.95,
+  "mean_reward": 87.2,
+  "std_reward": 54.76915190141254,
+  "mean_len": 18.92,
+  "illegal_action_rate": 0.0,
+  "seed": 1,
+  "mode": "static",
+  "policy": "mlp",
+  "opponent": "random",
+  "train_opponent": "rule",
+  "checkpoint": "ppo_mlp_rule_static_s1.zip"
+}

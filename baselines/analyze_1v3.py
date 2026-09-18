@@ -43,9 +43,12 @@ def main():
         n_red = len(game.red_a_team)
         bucket = "2v2" if n_red == 2 else "1v3"
         done, tot = False, 0.0
+        state, ep_start = None, np.array([True])
         while not done:
             if is_lstm(cfg):
-                a, _ = model.predict(obs, deterministic=True)
+                a, state = model.predict(obs, state=state, episode_start=ep_start,
+                                         deterministic=True)
+                ep_start = np.array([False])
             else:
                 a, _ = model.predict(obs, action_masks=info["action_mask"], deterministic=True)
             obs, r, done, tr, info = env.step(int(a))

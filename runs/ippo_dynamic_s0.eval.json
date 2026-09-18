@@ -3,10 +3,11 @@
   "mode": "dynamic",
   "opponent": "rule",
   "policy": "ippo",
-  "num_timesteps": 200704,
-  "win_rate": 0.82,
-  "mean_reward": 63.15,
-  "std_reward": 66.85302910115593,
-  "mean_len": 20.46,
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.81,
+  "mean_reward": 57.1,
+  "std_reward": 63.24231178570246,
+  "mean_len": 20.36,
   "illegal_action_rate": 0.0
 }

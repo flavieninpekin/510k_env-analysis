@@ -37,8 +37,13 @@ def run_task(cfg: PPOConfig, max_retries: int = 20, python: str = sys.executable
             "--total", str(cfg.total_timesteps), "--chunk", str(cfg.chunk_size),
             "--n-steps", str(cfg.n_steps), "--batch-size", str(cfg.batch_size),
             "--n-epochs", str(cfg.n_epochs), "--lr", str(cfg.learning_rate),
+            "--ent-coef", str(cfg.ent_coef),
+            "--net-arch", *[str(x) for x in cfg.net_arch],
+            "--lstm-hidden", str(cfg.lstm_hidden_size),
             "--out", cfg.out_dir,
         ]
+        if cfg.tag_suffix:
+            cmd += ["--tag-suffix", cfg.tag_suffix]
         if cfg.reveal is not None:
             cmd += ["--reveal", str(cfg.reveal)]
         t0 = time.time()
@@ -64,6 +69,11 @@ def main():
     ap.add_argument("--out", default="runs")
     ap.add_argument("--reveal", type=float, default=None,
                     help="info-reveal probability for DYNAMIC mode (0..1)")
+    ap.add_argument("--lr", type=float, default=3e-4)
+    ap.add_argument("--ent-coef", type=float, default=0.01)
+    ap.add_argument("--net-arch", nargs="+", type=int, default=[256, 256])
+    ap.add_argument("--lstm-hidden", type=int, default=256)
+    ap.add_argument("--tag-suffix", default="")
     ap.add_argument("--max-retries", type=int, default=20)
     ap.add_argument("--only", type=str, default=None,
                     help="comma list of 'mode:seed' to run; overrides --modes/--seeds")
@@ -75,11 +85,20 @@ def main():
             m, _, s = spec.partition(":")
             tasks.append(PPOConfig(mode=m, seed=int(s), policy=args.policy,
                                    opponent=args.opponent, total_timesteps=args.total,
-                                   chunk_size=args.chunk, out_dir=args.out, reveal=args.reveal))
+                                   chunk_size=args.chunk, learning_rate=args.lr,
+                                   ent_coef=args.ent_coef,
+                                   net_arch=tuple(args.net_arch),
+                                   lstm_hidden_size=args.lstm_hidden,
+                                   tag_suffix=args.tag_suffix,
+                                   out_dir=args.out, reveal=args.reveal))
     else:
         tasks = [
             PPOConfig(mode=m, seed=s, policy=args.policy, opponent=args.opponent,
                       total_timesteps=args.total, chunk_size=args.chunk,
+                      learning_rate=args.lr, ent_coef=args.ent_coef,
+                      net_arch=tuple(args.net_arch),
+                      lstm_hidden_size=args.lstm_hidden,
+                      tag_suffix=args.tag_suffix,
                       out_dir=args.out, reveal=args.reveal)
             for m in args.modes for s in args.seeds
         ]

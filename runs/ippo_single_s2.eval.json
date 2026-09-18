@@ -3,10 +3,11 @@
   "mode": "single",
   "opponent": "rule",
   "policy": "ippo",
-  "num_timesteps": 200704,
-  "win_rate": 0.37,
-  "mean_reward": 3.7,
-  "std_reward": 21.536248512682054,
-  "mean_len": 14.46,
+  "reveal": null,
+  "num_timesteps": 1001472,
+  "win_rate": 0.35,
+  "mean_reward": 4.7,
+  "std_reward": 23.1928868405811,
+  "mean_len": 14.39,
   "illegal_action_rate": 0.0
 }

@@ -4,3 +4,11 @@ __pycache__/
 runs/*.zip
 *.pt
 *.pth
+runs_prelim/
+runs/*.log
+runs/*.err.log
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg

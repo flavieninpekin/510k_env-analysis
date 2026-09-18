@@ -1,0 +1,13 @@
+{
+  "win_rate": 0.86,
+  "mean_reward": 69.65,
+  "std_reward": 66.40502616519325,
+  "mean_len": 21.48,
+  "illegal_action_rate": 0.0,
+  "seed": 1,
+  "mode": "dynamic",
+  "policy": "ippo",
+  "opponent": "random",
+  "train_opponent": "rule",
+  "checkpoint": "ippo_dynamic_s1.zip"
+}
