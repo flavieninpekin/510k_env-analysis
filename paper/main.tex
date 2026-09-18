@@ -33,11 +33,12 @@ identity and team size (2v2 vs 1v3) are determined at deal time by a private
 red-A distribution and hidden from observations. 510K offers four independently
 ablatable modes (SINGLE, STATIC, DYNAMIC, OBVIOUS), a graded information-reveal
 dial, Gymnasium and PettingZoo interfaces with action masking, and reference
-baselines. We formalize the resulting challenge as a \emph{belief-inference gap}
-and measure it behaviourally: policies learn to defer to a fixed, known partner
-(deferral asymmetry $+0.38$, $p<10^{-4}$), but do not condition on a hidden
-partner ($+0.00$, $p=0.21$) and do not exploit one that is explicitly revealed
-($-0.04$, $p<10^{-4}$), even though the reveal dial is a near-lossless
+baselines. We formalize the resulting challenge as a \emph{belief-inference gap}:
+the relationship is decodable from public play (probe AUC up to $1.00$;
+logically determined for 36--39\% of decisions), yet policies learn to defer
+only to a fixed, known partner (deferral asymmetry $+0.38$, $p<10^{-4}$) and do
+not condition on a hidden partner ($+0.00$, $p=0.21$) or an explicitly revealed
+one ($-0.04$, $p<10^{-4}$), even though the reveal dial is a near-lossless
 information channel ($\ge$91\% of ideal mutual information). Structural probes
 show that the axes are not separable: scoring and finishing trade off, and the
 hidden team leaves most reward variance unattributable. A 1M-step, 5-seed
@@ -230,7 +231,7 @@ visibility.
 The hidden relationship can be a 2v2 partnership or a 1v3/3v1 solo
 configuration: the red team has size 2 with probability
 $1 - 4\binom{50}{11}/\binom{52}{13} \approx 0.765$ and size 1 otherwise --- a
-closed-form hypergeometric fact verified exactly (Section~6.8). We treat the
+closed-form hypergeometric fact verified exactly (Section~6.9). We treat the
 solo case as a feature: the latent variable to infer is not only \emph{who} is
 my partner but \emph{whether I even have one}. Because the team is hidden, the
 reward function itself is latent: the same observation--action pair can map to
@@ -503,16 +504,40 @@ merely revealing the partner does not help --- OBVIOUS is significantly
 OBVIOUS seeds produce identical decision sequences on the shared evaluation
 deals, a signature of a policy that has collapsed to ignoring the team bits.
 
-\paragraph{Recurrent corroboration.} A natural objection is that the MLP is
-memoryless and \emph{cannot} infer the hidden relationship. We therefore
-trained two masked-LSTM variants (higher entropy; smaller net + lower lr) for
-1M steps, 2 seeds. The healthiest (\texttt{ent\_coef}=0.05) is seed-diverse in
+\paragraph{Recurrent corroboration.} The MLP is memoryless, so we also trained
+two masked-LSTM variants (1M steps, 2 seeds). The healthiest is seed-diverse in
 SINGLE ($0.540 \pm 0.030$) and STATIC and learns fixed-partner cooperation
-($+0.37/+0.38$), yet it still shows no cooperation under hidden or revealed
-teams (DYNAMIC $-0.043$, seed-identical; OBVIOUS $-0.07/-0.06$). The
-cooperation-inference failure is therefore not simply an artifact of a
-memoryless policy. Caveat: the DYNAMIC checkpoints remain seed-degenerate, so
-we treat this as corroborating rather than definitive evidence.
+($+0.37/+0.38$), yet shows no cooperation under hidden or revealed teams
+(DYNAMIC $-0.043$; OBVIOUS $-0.07/-0.06$), so the failure is not merely
+memoryless; its DYNAMIC checkpoints remain seed-degenerate (corroborating
+evidence only).
+
+\subsection{The belief-inference gap}
+\label{sec:beliefgap}
+We formalize the challenge as a \emph{belief-inference gap}: the latent
+relationship $z$ (who, if anyone, is a teammate) must be inferred from the
+public history $h_t$, and the policy should condition on it. A linear probe over
+the agent's features predicts the true teammate set with AUC $0.60$/$0.91$
+(DYNAMIC/OBVIOUS) from a single observation, rising to $0.70$/$1.00$ with
+history, and the relation is \emph{logically determined} by public information
+for $39\%$/$36\%$ of decisions; yet the trained policy's deferral asymmetry is
+$+0.003$ (DYNAMIC, $p=0.21$) and $-0.037$ (OBVIOUS, $p<10^{-4}$). The
+relationship is decodable from public play but unused.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Belief-inference gap (1200 games/mode, 13.9k/17.8k agent decisions).}
+\label{tab:beliefgap}
+\begin{tabular}{lcccc}
+\toprule
+mode & determinable & obs-probe AUC & hist-probe AUC & policy asym \\
+\midrule
+DYNAMIC & 0.39 & 0.60 & 0.70 & $+0.003$ \\
+OBVIOUS & 0.36 & 0.91 & 1.00 & $-0.037$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Hidden-relationship robustness (1v3 vs 2v2)}
 DYNAMIC deals split by red-team size (76\% 2v2 / 24\% 1v3). Over the five seeds
@@ -533,7 +558,7 @@ artifact.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.58\linewidth]{figs/learning_curves_modes.png}
+\includegraphics[width=0.45\linewidth]{figs/learning_curves_modes.png}
 \caption{Learning curves per mode (MLP, mean $\pm$ 95\% CI over 5 seeds).}
 \label{fig:curves}
 \end{figure}
@@ -614,8 +639,8 @@ chunked checkpoints, and per-chunk eval history.
 ($\approx$40 min per 1M-step run; the 4-mode $\times$ 5-seed matrix
 $\approx$13 GPU-hours).
 \item \textbf{Data}: per-run \texttt{*.eval.json} and \texttt{*.history.jsonl},
-plus coupling / positions / team-conditioning analyses and the statistical
-report (\texttt{runs/stats\_report.md}).
+plus coupling / positions / team-conditioning / inferability analyses and the
+statistical report (\texttt{runs/stats\_report.md}).
 \end{itemize}
 
 \label{refsstart}
@@ -667,7 +692,7 @@ OBVIOUS & 0.822 & 0.958 & 0.807 & 0.950 \\
 
 \section{1v3 vs 2v2 robustness by seed}
 Table~\ref{tab:1v3-appendix} gives the per-seed split summarised in
-Section~6.5.
+Section~6.6.
 
 \begin{table}[h]
 \centering

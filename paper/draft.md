@@ -20,12 +20,13 @@ competition, and partial observability. Team identity and team size (2v2 vs
 observations. 510K offers four independently ablatable modes (SINGLE, STATIC,
 DYNAMIC, OBVIOUS), a graded information-reveal dial, Gymnasium and PettingZoo
 interfaces with action masking, and reference baselines. We formalize the
-resulting challenge as a *belief-inference gap* and measure it behaviourally:
-policies learn to defer to a fixed, known partner (deferral asymmetry +0.38,
-p<1e-4), but do not condition on a hidden partner (+0.00, p=0.21) and do not
-exploit one that is explicitly revealed (−0.04, p<1e-4), even though the reveal
-dial is a near-lossless information channel (≥91% of ideal mutual information).
-Structural probes show that the axes are not separable: scoring and finishing
+resulting challenge as a *belief-inference gap*: the relationship is decodable
+from public play (probe AUC up to 1.00; logically determined for 36–39% of
+decisions), yet policies learn to defer only to a fixed, known partner
+(deferral asymmetry +0.38, p<1e-4) and do not condition on a hidden partner
+(+0.00, p=0.21) or an explicitly revealed one (−0.04, p<1e-4), even though the
+reveal dial is a near-lossless information channel (≥91% of ideal mutual
+information). Structural probes show that the axes are not separable: scoring and finishing
 trade off, and the hidden team leaves most reward variance unattributable. A
 1M-step, 5-seed masked-PPO suite and a recurrent variant corroborate the
 failure. 510K is offered as a benchmark for *when-to-cooperate* decisions under
@@ -223,7 +224,7 @@ suited and non-suited), joker bomb, and (in team modes) red-A singles/pairs.
 The hidden relationship can be a 2v2 partnership or a **1v3/3v1 solo**
 configuration: the red team has size 2 with probability
 `1 − 4·C(50,11)/C(52,13) ≈ 0.765` and size 1 otherwise — a closed-form
-hypergeometric fact verified exactly (§6.8). We treat the solo case as a
+hypergeometric fact verified exactly (§6.9). We treat the solo case as a
 feature: the latent variable to infer is not only *who* is my partner but
 *whether I even have one*. Because the team is hidden, the reward function
 itself is latent: the same observation–action pair can map to different returns
@@ -543,7 +544,26 @@ artifact of a memoryless policy. Caveat: the DYNAMIC checkpoints remain
 seed-degenerate, so we treat this as corroborating rather than definitive
 evidence (`notes/baseline_anomaly_lstm.md`).
 
-### 6.5 Hidden-relationship robustness (1v3 vs 2v2)
+### 6.5 The belief-inference gap
+
+We formalize the challenge as a **belief-inference gap**: the latent
+relationship `z` (who, if anyone, is a teammate) must be inferred from the
+public history `h_t`, and the policy should condition on it. A linear probe over
+the agent's features predicts the true teammate set with AUC 0.60/0.91
+(DYNAMIC/OBVIOUS) from a single observation, rising to 0.70/1.00 with history,
+and the relation is **logically determined** by public information for
+39%/36% of decisions; yet the trained policy's deferral asymmetry is +0.003
+(DYNAMIC, p=0.21) and −0.037 (OBVIOUS, p<1e-4). The relationship is decodable
+from public play but unused.
+
+| mode | determinable | obs-probe AUC | hist-probe AUC | policy asym |
+|---|---|---|---|---|
+| DYNAMIC | 0.39 | 0.60 | 0.70 | +0.003 |
+| OBVIOUS | 0.36 | 0.91 | 1.00 | −0.037 |
+
+(1200 games/mode, 13.9k/17.8k agent decisions; `baselines/inferability_probe.py`.)
+
+### 6.6 Hidden-relationship robustness (1v3 vs 2v2)
 
 DYNAMIC deals split by red-team size (76% 2v2 / 24% 1v3), MLP PPO:
 
@@ -560,7 +580,7 @@ Averaged over the 5 seeds: 2v2 0.840, 1v3 0.891 (deal split 384/116 ≈
 so conclusions do not depend on the (intentionally unfiltered) 1v3 deals. The
 latent relationship to infer is genuinely *both* team identity and team size.
 
-### 6.6 Learning curves
+### 6.7 Learning curves
 
 Per-chunk evaluation history (one point per 100k steps, `*.history.jsonl`;
 figure `learning_curves_modes.png`) shows that every mode plateaus early: the
@@ -581,7 +601,7 @@ are statistically flat by 300k already (final vs 300k, paired p=0.13 and 0.07),
 so the information-utilization failure of §6.2 is not a "not yet trained"
 artifact: the policies have converged and still do not exploit the reveal dial.
 
-### 6.7 Connection to IIGC
+### 6.8 Connection to IIGC
 
 Under hidden teams (DYNAMIC), PPO exhibits *deceptive stability*: at 1M steps
 its evaluation performance is unchanged whether or not the team is revealed
@@ -591,7 +611,7 @@ hurts. This benchmark paper supplies the environment characterization behind
 that phenomenon: the four modes, the info-reveal dial, and the baseline suite
 make the phenomenon reproducible and the mechanism studyable.
 
-### 6.8 Theoretical grounding
+### 6.9 Theoretical grounding
 
 Four analytical results (proofs and verification in `notes/theory.md`) tie the
 environment's *design* and the *observed* results together:
@@ -693,10 +713,10 @@ game".
 - **Compute**: one GPU; measured throughput ≈500 env-steps/s for MaskablePPO
   (≈40 min per 1M-step run; the 4-mode × 5-seed matrix ≈13 GPU-hours).
 - **Data**: per-run `*.eval.json` and `*.history.jsonl`, plus the coupling /
-  positions / team-conditioning analyses (`coupling_probes_*.json`,
-  `*.positions.json`, `team_conditioning_*.json`) and the statistical report
-  (`runs/stats_report.md`, `baselines/stats.py`), committed to the analysis
-  repo.
+  positions / team-conditioning / inferability analyses (`coupling_probes_*.json`,
+  `*.positions.json`, `team_conditioning_*.json`, `inferability_probe.json`) and
+  the statistical report (`runs/stats_report.md`, `baselines/stats.py`),
+  committed to the analysis repo.
 
 ---
 
