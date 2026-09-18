@@ -12,3 +12,4 @@ paper/*.log
 paper/*.out
 paper/*.bbl
 paper/*.blg
+runs/probe_shard_*.npz
