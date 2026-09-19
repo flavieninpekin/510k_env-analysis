@@ -28,7 +28,8 @@ decisions), yet policies learn to defer only to a fixed, known partner
 reveal dial is a near-lossless information channel (≥91% of ideal mutual
 information). Structural probes show that the axes are not separable: scoring and finishing
 trade off, and the hidden team leaves most reward variance unattributable. A
-1M-step, 5-seed masked-PPO suite and a recurrent variant corroborate the
+1M-step, 5-seed masked-PPO suite, a recurrent variant, and a MAPPO baseline
+corroborate the
 failure. 510K is offered as a benchmark for *when-to-cooperate* decisions under
 coupled objectives.
 
@@ -532,17 +533,15 @@ Reading:
   ground-truth teams in one environment; it is the behavioural face of C2/C4 and
   the mechanism behind the information-utilization failure of §6.2.
 
-**Recurrent corroboration.** A natural objection is that the MLP is memoryless,
-so it *cannot* infer the hidden relationship. We therefore trained two
-masked-LSTM variants (higher entropy; smaller net + lower lr) for 1M steps,
-2 seeds. The healthiest (`ent_coef`=0.05) is seed-diverse in SINGLE
-(0.540 ± 0.030, above the MLP) and STATIC and learns fixed-partner cooperation
-(asym +0.37/+0.38, matching the MLP), yet it still shows no cooperation under
-hidden or revealed teams (DYNAMIC asym −0.043, seed-identical; OBVIOUS
-−0.07/−0.06). The cooperation-inference failure is therefore not simply an
-artifact of a memoryless policy. Caveat: the DYNAMIC checkpoints remain
-seed-degenerate, so we treat this as corroborating rather than definitive
-evidence (`notes/baseline_anomaly_lstm.md`).
+**Recurrent and CTDE corroboration.** The MLP is memoryless, so we also trained
+two masked-LSTM variants and a MAPPO baseline with a centralized critic and
+self-play (1M steps). The healthiest LSTM is seed-diverse in SINGLE (0.540 ±
+0.030) and STATIC and learns fixed-partner cooperation (+0.37/+0.38), yet shows
+no cooperation under hidden or revealed teams (DYNAMIC −0.043; OBVIOUS
+−0.07/−0.06). MAPPO likewise shows no positive deference to the hidden partner
+(DYNAMIC asym −0.021, range −0.025..−0.016, 3 seeds) despite much higher win
+rates (0.93–0.98) — so the failure is neither memoryless nor PPO-specific, and
+team win rate is again a poor metric.
 
 ### 6.5 The belief-inference gap
 

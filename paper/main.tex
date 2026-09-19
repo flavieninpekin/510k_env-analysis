@@ -42,7 +42,8 @@ one ($-0.04$, $p<10^{-4}$), even though the reveal dial is a near-lossless
 information channel ($\ge$91\% of ideal mutual information). Structural probes
 show that the axes are not separable: scoring and finishing trade off, and the
 hidden team leaves most reward variance unattributable. A 1M-step, 5-seed
-masked-PPO suite and a recurrent variant corroborate the failure. 510K is
+masked-PPO suite, a recurrent variant, and a MAPPO baseline corroborate the
+failure. 510K is
 offered as a benchmark for \emph{when-to-cooperate} decisions under coupled
 objectives.
 \end{abstract}
@@ -504,13 +505,16 @@ merely revealing the partner does not help --- OBVIOUS is significantly
 OBVIOUS seeds produce identical decision sequences on the shared evaluation
 deals, a signature of a policy that has collapsed to ignoring the team bits.
 
-\paragraph{Recurrent corroboration.} The MLP is memoryless, so we also trained
-two masked-LSTM variants (1M steps, 2 seeds). The healthiest is seed-diverse in
-SINGLE ($0.540 \pm 0.030$) and STATIC and learns fixed-partner cooperation
+\paragraph{Recurrent and CTDE corroboration.} The MLP is memoryless, so we also
+trained two masked-LSTM variants and a MAPPO baseline with a centralized critic
+and self-play (1M steps). The healthiest LSTM is seed-diverse in SINGLE
+($0.540 \pm 0.030$) and STATIC and learns fixed-partner cooperation
 ($+0.37/+0.38$), yet shows no cooperation under hidden or revealed teams
-(DYNAMIC $-0.043$; OBVIOUS $-0.07/-0.06$), so the failure is not merely
-memoryless; its DYNAMIC checkpoints remain seed-degenerate (corroborating
-evidence only).
+(DYNAMIC $-0.043$; OBVIOUS $-0.07/-0.06$). MAPPO likewise shows no positive
+deference to the hidden partner (DYNAMIC asym $-0.021$, range $-0.025$ to
+$-0.016$, 3 seeds) despite much higher win rates ($0.93$--$0.98$) --- so the
+failure is neither memoryless nor PPO-specific, and team win rate is again a
+poor metric.
 
 \subsection{The belief-inference gap}
 \label{sec:beliefgap}

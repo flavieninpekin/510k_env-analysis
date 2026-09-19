@@ -1,0 +1,12 @@
+{
+  "seed": 1,
+  "mode": "dynamic",
+  "opponent": "rule",
+  "policy": "mappo",
+  "num_timesteps": 1001472,
+  "win_rate": 0.98,
+  "mean_reward": 110.25,
+  "std_reward": 61.48729543572396,
+  "mean_len": 21.41,
+  "illegal_action_rate": 0.0
+}

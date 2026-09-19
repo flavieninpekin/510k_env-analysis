@@ -30,6 +30,16 @@ from .config import PPOConfig
 from .train_ppo import load_model, checkpoint_path, is_lstm, make_eval_env
 
 
+def _load_mappo(cfg: PPOConfig):
+    from sb3_contrib import MaskablePPO
+    from .train_mappo import make_env, checkpoint_path as mappo_ckpt
+    path = mappo_ckpt(cfg.mode, cfg.seed, cfg.out_dir)
+    env = make_env(cfg.mode)
+    env.unwrapped.set_rule_bot()
+    model = MaskablePPO.load(path, env=env)
+    return model, env, path
+
+
 def team_map(mode: str, game):
     if mode == "static":
         return {0: 0, 1: 1, 2: 0, 3: 1}
@@ -49,8 +59,11 @@ def decide(model, cfg, obs, info, state=None, ep_start=None):
 
 
 def run_episodes(cfg: PPOConfig, n_episodes: int) -> list:
-    model = load_model(cfg, checkpoint_path(cfg))
-    env = make_eval_env(cfg)
+    if cfg.policy == "mappo":
+        model, env, _ = _load_mappo(cfg)
+    else:
+        model = load_model(cfg, checkpoint_path(cfg))
+        env = make_eval_env(cfg)
     rows = []
     for ep in range(n_episodes):
         obs, info = env.reset(seed=7000 + ep)
@@ -118,7 +131,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--modes", nargs="+", default=["static", "dynamic", "obvious"])
     ap.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
-    ap.add_argument("--policy", default="mlp", choices=["mlp", "lstm"])
+    ap.add_argument("--policy", default="mlp", choices=["mlp", "lstm", "mappo"])
     ap.add_argument("--opponent", default="rule", choices=["random", "rule"])
     ap.add_argument("--tag-suffix", default="")
     ap.add_argument("--n-episodes", type=int, default=300)
@@ -132,7 +145,12 @@ def main():
             cfg = PPOConfig(mode=mode, seed=seed, policy=args.policy,
                             opponent=args.opponent, out_dir=args.out,
                             tag_suffix=args.tag_suffix)
-            if not os.path.exists(checkpoint_path(cfg)):
+            if args.policy == "mappo":
+                from .train_mappo import checkpoint_path as mappo_ckpt
+                exists = os.path.exists(mappo_ckpt(mode, seed, args.out))
+            else:
+                exists = os.path.exists(checkpoint_path(cfg))
+            if not exists:
                 print(f"skip {mode} s{seed} (no checkpoint)")
                 continue
             per_seed.append(summarise(run_episodes(cfg, args.n_episodes)))
